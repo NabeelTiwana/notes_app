@@ -31,6 +31,7 @@ class DatabaseHelper {
     );
   }
 
+  // ✅ Add new note
   Future<void> addNewNote(NoteModel note) async {
     final db = await database;
     await db.insert(
@@ -40,11 +41,33 @@ class DatabaseHelper {
     );
   }
 
+  // ✅ Get all notes
   Future<List<NoteModel>> getNotes() async {
     final db = await database;
     final res = await db.query('notes');
 
     if (res.isEmpty) return [];
     return res.map((map) => NoteModel.fromMap(map)).toList();
+  }
+
+  // ✅ Update note
+  Future<int> updateNote(NoteModel note) async {
+    final db = await database;
+    return await db.update(
+      'notes',
+      note.toMap(),
+      where: 'id = ?',
+      whereArgs: [note.id],
+    );
+  }
+
+  // ✅ Delete note
+  Future<int> deleteNote(int id) async {
+    final db = await database;
+    return await db.delete(
+      'notes',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 }
