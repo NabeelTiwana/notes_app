@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/screens/display_note.dart';
 import 'package:notes_app/screens/note_select.dart';
+
 import 'constant/color.dart';
 import 'db/database_helper.dart';
 import 'model/note_model.dart';
@@ -64,7 +65,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSpacing: 8,
                 children: List.generate(notes.length, (index) {
                   final note = notes[index];
-                  final color = NoteCardColors.cardColors[index % NoteCardColors.cardColors.length];
+                  final color = NoteCardColors
+                      .cardColors[index % NoteCardColors.cardColors.length];
                   final isSelected = selectionManager.isSelected(note);
 
                   return GestureDetector(
@@ -94,7 +96,11 @@ class _HomePageState extends State<HomePage> {
                           Positioned(
                             top: 8,
                             right: 8,
-                            child: Icon(Icons.check_circle, color: Colors.white, size: 24),
+                            child: Icon(
+                              Icons.check_circle,
+                              color: Colors.white,
+                              size: 24,
+                            ),
                           ),
                       ],
                     ),

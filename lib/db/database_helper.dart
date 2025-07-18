@@ -36,7 +36,7 @@ class DatabaseHelper {
     final db = await database;
     await db.insert(
       'notes',
-      note.toMap(),
+      note.toMap(),   
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
